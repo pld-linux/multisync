@@ -9,12 +9,14 @@
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
-Version:	0.81
+Version:	0.82
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	e9091a2a1a364f2afb71149928a26c78
+# Source0-md5:	499aaa3d41e33276ab162db1d1912a16
+Patch0:		%{name}-install.patch
+Patch1:		%{name}-top.patch
 URL:		http://multisync.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -145,18 +147,16 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure
 %{__make}
-
-# ugly hack to build evolution plugin...
-sed 's#/bin/sh#/bin/bash#' < plugins/evolution_sync/configure > configure.evolution
-mv configure.evolution plugins/evolution_sync/configure
-chmod 755 plugins/evolution_sync/configure
 
 # libnvpair library
 # pi_socket library
@@ -165,7 +165,14 @@ export SKIP_PLUGINS
 
 # build plugins
 for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
-	cd plugins/$dir
+    cd plugins/$dir
+    %{__libtoolize}
+    cp ../../libtool .
+    cp ../../ltmain.sh .
+    %{__aclocal}
+    %{__autoconf}
+    %{__automake}
+    sed -i 's#/bin/sh#/bin/bash#' configure # ugly hack to avoid bashism :-\
 	%configure
 	%{__make}
 	cd -
