@@ -19,10 +19,11 @@ Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-top.patch
 Patch2:		%{name}-desktop.patch
+Patch3:		%{name}-newbluez.patch
 URL:		http://multisync.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bluez-libs-devel >= 2.6
+BuildRequires:	bluez-libs-devel >= 2.7
 BuildRequires:	curl-devel
 %{?with_evolution:BuildRequires:	evolution-devel >= 1.4.3}
 BuildRequires:	libgnomeui-devel >= 2.3
@@ -167,6 +168,7 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__perl} -pi -e 's@/lib/multisync@/%{_lib}/multisync@' \
 	src/Makefile.am plugins/*/src/Makefile.am
