@@ -1,34 +1,35 @@
 
 #
 # TODO:
-# - devel subpackage
 # - -avoid-version patch for plugins and send it to authors
 # - review pl translations
 #
 # Conditional build:
-# _with_evolution - evolution support
-%bcond_with  evolution 			# build with evolution support
-
+%bcond_with	evolution	# build evolution plugin
+#
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.82
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	499aaa3d41e33276ab162db1d1912a16
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-top.patch
+Patch2:		%{name}-desktop.patch
 URL:		http://multisync.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.6
+BuildRequires:	curl-devel
 %{?with_evolution:BuildRequires:	evolution-devel >= 1.4.3}
 BuildRequires:	libgnomeui-devel >= 2.3
+BuildRequires:	libtool
 BuildRequires:	openldap-devel >= 2.1.12
 BuildRequires:	openobex-devel >= 1.0.0
-BuildRequires:	curl-devel
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,6 +49,18 @@ komputera, jak te¿ pomiêdzy ró¿nymi komputerami i urz±dzeniami
 przeno¶nymi. Aktualnie posiada wtyczki (w osobnych pakietach) do:
 Evolution Ximiana, przeno¶nych urz±dzeñ IrMC, SyncML i kopii
 zapasowych.
+
+%package devel
+Summary:	Header file to create multisync plugins
+Summary(pl):	Plik nag³ówkowy do tworzenia wtyczek multisynca
+Group:		Development/Libraries
+# doesn't require base
+
+%description devel
+Header file to create multisync plugins.
+
+%description devel -l pl
+Plik nag³ówkowy do tworzenia wtyczek multisynca.
 
 %package evolution
 Summary:	A Ximian Evolution plugin for MultiSync
@@ -153,11 +166,16 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+%{__perl} -pi -e 's@/lib/multisync@/%{_lib}/multisync@' \
+	src/Makefile.am plugins/*/src/Makefile.am
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
@@ -174,15 +192,15 @@ export SKIP_PLUGINS
 
 # build plugins
 for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
-    cd plugins/$dir
-    %{__libtoolize}
-    cp ../../libtool .
-    cp ../../ltmain.sh .   # due to aux dir; this scripts are copied into ../..; where to fix it?
-    %{__aclocal}
-    %{__autoconf}
-    %{__automake}
-    sed -i 's#/bin/sh#/bin/bash#' configure # ugly hack to avoid bashism :-\
-	%configure
+	cd plugins/$dir
+	%{__aclocal}
+	%{__autoconf}
+	%{__autoheader}
+	# don't use -f here
+	automake -a -c --foreign
+	sed -i 's#/bin/sh#/bin/bash#' configure # ugly hack to workaround bashism :-\
+	%configure \
+		--disable-static
 	%{__make}
 	cd -
 done
@@ -206,6 +224,8 @@ for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
 		DESTDIR=$RPM_BUILD_ROOT
 done
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/lib*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -215,6 +235,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/%{name}
 %{_datadir}/%{name}
+%{_desktopdir}/multisync.desktop
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/multisync
 
 %if %{with evolution}
 %files evolution
