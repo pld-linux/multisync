@@ -10,17 +10,21 @@
 #
 # Conditional build:
 %bcond_without	evolution	# build without evolution plugin
-#
+
+%define skip_plugins "%{!?with_evolution:-e evolution2_sync} \
+	-e CVS -e remote_sync -e empty_plugin -e csa_plugin -e palm_sync \
+	-e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
+
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.83
-Release:	0.20041028.1
+Release:	0.20041106.1
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	68388cdaa4dd9297a0cc3f34ea1dea8b
+# Source0-md5:	c1fd57fef6d3101b0f172d0462d49b14
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-top.patch
 Patch2:		%{name}-desktop.patch
@@ -174,7 +178,7 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1
-%patch3 -p1
+#%patch3 -p1
 
 %{__perl} -pi -e 's@/lib/multisync@/%{_lib}/multisync@' \
 	src/Makefile.am plugins/*/src/Makefile.am
@@ -188,17 +192,9 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 %configure
 %{__make}
 
-# libnvpair library
-# pi_socket library
-%if %{with evolution}
-SKIP_PLUGINS="-e CVS -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
-%else
-SKIP_PLUGINS="-e CVS -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim -e evolution2_sync"
-%endif
-
-export SKIP_PLUGINS
 
 # build plugins
+SKIP_PLUGINS=%{skip_plugins}
 for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
 	cd plugins/$dir
 	%{__aclocal}
@@ -219,14 +215,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%if %{with evolution}
-SKIP_PLUGINS="-e CVS -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
-%else
-SKIP_PLUGINS="-e CVS -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim -e evolution2_sync"
-%endif
-export SKIP_PLUGINS
-
 # build plugins
+SKIP_PLUGINS=%{skip_plugins}
 for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
 	%{__make} -C plugins/$dir install \
 		DESTDIR=$RPM_BUILD_ROOT
