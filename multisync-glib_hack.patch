@@ -1,0 +1,19 @@
+diff -Nur multisync-0.80.orig/plugins/irmc_sync/src/Makefile.am multisync-0.80/plugins/irmc_sync/src/Makefile.am
+--- multisync-0.80.orig/plugins/irmc_sync/src/Makefile.am	Thu Jul 31 09:25:31 2003
++++ multisync-0.80/plugins/irmc_sync/src/Makefile.am	Thu Sep  4 17:46:15 2003
+@@ -21,7 +21,7 @@
+ libirmc_bluetooth_la_SOURCES = \
+ 	irmc_bluetooth.c irmc_bluetooth.h
+ 
+-libirmc_bluetooth_la_LIBADD = -lbluetooth -lsdp -lpthread -lglib
++libirmc_bluetooth_la_LIBADD = -lbluetooth -lsdp -lpthread -lglib-2.0
+ 
+ libirmc_sync_la_SOURCES = \
+ 	interface.c interface.h \
+@@ -36,5 +36,5 @@
+ libirmc_sync_la_LDFLAGS = \
+ 	 -Lbfb/
+ 
+-libirmc_sync_la_LIBADD = @PACKAGE_LIBS@ -lopenobex -lpthread -lglib -lbfb
++libirmc_sync_la_LIBADD = @PACKAGE_LIBS@ -lopenobex -lpthread -lglib-2.0 -lbfb
+ 
