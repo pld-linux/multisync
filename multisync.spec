@@ -30,7 +30,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.7
 BuildRequires:	curl-devel
-%{?with_evolution:BuildRequires:	evolution-devel >= 1.4.3}
+%{?with_evolution:BuildRequires:	evolution-devel >= 2.0.0}
 BuildRequires:	libgnomeui-devel >= 2.3
 BuildRequires:	libtool
 BuildRequires:	openldap-devel >= 2.1.12
