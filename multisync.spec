@@ -1,22 +1,20 @@
 
 #
 # TODO:
-# - irmc plugin tries to link with glib1... make a patch and send it to
-#   authors <- fixed with simple hack, do not send the patch. fixing this
-#   problem requires more work :-\ <- it is fixed in their cvs
 # - devel subpackage
+# - -avoid-version patch for plugins and send it to authors
+# - review pl translations
 #
 
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
-Version:	0.80
-Release:	0.4
+Version:	0.81
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	3b6fc4ea80a1b013f3cb3707f46ff5a3
-Patch0:		%{name}-glib_hack.patch
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5:	e9091a2a1a364f2afb71149928a26c78
 URL:		http://multisync.sourceforge.net/
 BuildRequires:	bluez-libs-devel >= 2.4
 BuildRequires:	bluez-sdp-devel >= 1.2
@@ -132,11 +130,21 @@ Umo¿liwia ona synchronizacjê urz±dzeñ z w³±czonym SyncML, takich jak
 SonyEricsson P800, a tak¿e zdaln± synchronizacjê pomiêdzy MultiSyncami
 poprzez Internet.
 
+%package opie
+Summary:	Opie/Zaurus Synchronization Plugin for MultiSync
+Group:		X11/Applications
+Requires:	%{name} = %{version}
+
+%description opie
+Opie/Zaurus Synchronization Plugin for MultiSync.
+
 %prep
 %setup -q
-%patch0 -p1
 
 %build
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure
 %{__make}
 
@@ -145,9 +153,14 @@ sed 's#/bin/sh#/bin/bash#' < plugins/evolution_sync/configure > configure.evolut
 mv configure.evolution plugins/evolution_sync/configure
 chmod 755 plugins/evolution_sync/configure
 
+# libnvpair library
+# pi_socket library
+SKIP_PLUGINS="-e csa_plugin -e palm_sync"
+export SKIP_PLUGINS
+
 # build plugins
-for dir in plugins/*; do
-	cd $dir
+for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
+	cd plugins/$dir
 	%configure
 	%{__make}
 	cd -
@@ -159,9 +172,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+SKIP_PLUGINS="-e csa_plugin -e palm_sync"
+export SKIP_PLUGINS
+
 # build plugins
-for dir in plugins/*; do
-	cd $dir
+for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
+	cd plugins/$dir
 	%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 	cd -
@@ -199,3 +215,7 @@ rm -rf $RPM_BUILD_ROOT
 %files syncml
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/libsyncml_plugin.so*
+
+%files opie
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/libopie_sync.so*
