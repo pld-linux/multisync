@@ -38,7 +38,7 @@ and Opie / Zaurus PDAs.
 
 %description -l pl
 Program do synchronizacji kalendarzy, ksi±¿ek adresowych i innych
-danych odobistych pomiêdzy ró¿nymi programami w ramach jednego
+danych osobistych pomiêdzy ró¿nymi programami w ramach jednego
 komputera, jak te¿ pomiêdzy ró¿nymi komputerami i urz±dzeniami
 przeno¶nymi. Aktualnie posiada wtyczki (w osobnych pakietach) do:
 Evolution Ximiana, przeno¶nych urz±dzeñ IrMC, SyncML i kopii
