@@ -19,8 +19,8 @@ Release:	0.20041028.1
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-Source0:	%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	499aaa3d41e33276ab162db1d1912a16
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	68388cdaa4dd9297a0cc3f34ea1dea8b
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-top.patch
 Patch2:		%{name}-desktop.patch
