@@ -1,20 +1,25 @@
 
 #
 # TODO:
+# - update desktop patch
+# - kdepim plugin
+# - gnokii plugin
+# - bconds: kdepim, gnokii
 # - -avoid-version patch for plugins and send it to authors
 # - review pl translations
 #
 # Conditional build:
-%bcond_with	evolution	# build evolution plugin
+%bcond_without	evolution	# build without evolution plugin
 #
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
-Version:	0.82
-Release:	4
+Version:	0.83
+Release:	0.20041028.1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+#Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+Source0:	%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	499aaa3d41e33276ab162db1d1912a16
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-top.patch
@@ -167,7 +172,7 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 %patch3 -p1
 
 %{__perl} -pi -e 's@/lib/multisync@/%{_lib}/multisync@' \
@@ -185,9 +190,9 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 # libnvpair library
 # pi_socket library
 %if %{with evolution}
-SKIP_PLUGINS="-e csa_plugin -e palm_sync"
+SKIP_PLUGINS="-e CVS -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
 %else
-SKIP_PLUGINS="-e csa_plugin -e palm_sync -e evolution_sync"
+SKIP_PLUGINS="-e CVS -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim -e evolution2_sync"
 %endif
 
 export SKIP_PLUGINS
@@ -214,9 +219,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with evolution}
-SKIP_PLUGINS="-e csa_plugin -e palm_sync"
+SKIP_PLUGINS="-e CVS -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
 %else
-SKIP_PLUGINS="-e csa_plugin -e palm_sync -e evolution_sync"
+SKIP_PLUGINS="-e CVS -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim -e evolution2_sync"
 %endif
 export SKIP_PLUGINS
 
@@ -246,7 +251,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with evolution}
 %files evolution
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}/libevolution_sync.so*
+%attr(755,root,root) %{_libdir}/%{name}/libevolution2_sync.so*
 %endif
 
 %files backup
