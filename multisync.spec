@@ -1,3 +1,11 @@
+
+#
+# todo:
+# - finish the spec with plugins separated into subpackages
+# - irmc plugin tries to link with glib1... make a patch and send it to
+#   authors
+#
+
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych 
 Name:		multisync
