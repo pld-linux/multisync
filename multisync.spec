@@ -2,18 +2,21 @@
 # TODO:
 # - finish the spec with plugins separated into subpackages
 # - irmc plugin tries to link with glib1... make a patch and send it to
-#   authors
+#   authors <- fixed with simple hack, do not send the patch. fixing this
+#   problem requires more work :-\
+# - kill evolution-static BR, look into evolution.spec todo
 #
 
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.80
-Release:	0.1
+Release:	0.3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	3b6fc4ea80a1b013f3cb3707f46ff5a3
+Patch0:		%{name}-glib_hack.patch
 URL:		http://multisync.sourceforge.net/
 BuildRequires:	bluez-libs-devel >= 2.4
 BuildRequires:	bluez-sdp-devel >= 1.2
@@ -42,89 +45,89 @@ przeno¶nymi. Aktualnie posiada wtyczki (w osobnych pakietach) do:
 Evolution Ximiana, przeno¶nych urz±dzeñ IrMC, SyncML i kopii
 zapasowych.
 
-%package %{name}-evolution
+%package evolution
 Summary:	A Ximian Evolution plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do Evolution Ximiana
 Group:		X11/Applications
 Requires:	%{name} = %{version}
 
-%description %{name}-evolution
+%description evolution
 This is a plugin to enable synchronization of Ximian Evolution data
 using MultiSync.
 
-%description %{name}-evolution -l pl
+%description evolution -l pl
 Jest to wtyczka umo¿liwiaj±ca synchronizacjê Evolution Ximiana za
 pomoc± MultiSync.
 
-%package %{name}-backup
+%package backup
 Summary:	A backup plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do kopii zapasowych
 Group:		X11/Applications
 Requires:	%{name} = %{version}
 
-%description %{name}-backup
+%description backup
 This is a MultiSync plugin which backs up your calendar/phonebook/etc.
 data.
 
-%description %{name}-backup -l pl
+%description backup -l pl
 Jest to wtyczka MultiSynca tworz±ca kopie zapasowe kalendarza/ksi±¿ki
 adresowej/itp.
 
-%package %{name}-irmc
+%package irmc
 Summary:	An IrMC (SonyEricsson T39/T68i/T610, Siemens S55) plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do IrMC (SonyEricsson T39/T68i/T610, Siemens S55)
 Group:		X11/Applications
 Requires:	%{name} = %{version}
 
-%description %{name}-irmc
+%description irmc
 This is a MultiSync plugin for IrMC mobile clients (cell phones
 such as SonyEricsson T39/T68/T610 and Siemens S55) connected via
 Bluetooth, IR or cable.
 
-%description %{name}-irmc -l pl
+%description irmc -l pl
 Jest to wtyczka MultiSynca do wspó³pracy z przeno¶nymi klientami IrMC
 (telefony komórkowe takie jak SonyEricsson T39/T68/T610 i Siemens S55)
 pod³±czonymi za pomoc± Bluetooth, ³±cza na podczerwieñ (IR) lub kabla.
 
-%package %{name}-irmc-bluetooth
+%package irmc-bluetooth
 Summary:	Bluetooth support for the IrMC plugin for MultiSync
 Summary(pl):	Wsparcie dla Bluetooth dla wtyczki MultiSynca do IrMC
 Group:		X11/Applications
 Requires:	%{name}-irmc = %{version}
 
-%description %{name}-irmc-bluetooth
+%description irmc-bluetooth
 This package adds Bluetooth support to the IrMC (mobile device) plugin
 for MultiSync.
 
-%description %{name}-irmc-bluetooth -l pl
+%description irmc-bluetooth -l pl
 Ten pakiet dodaje wsparcie dla Bluetooth do wtyczki MultiSynca do IrMC
 (dla urz±dzeñ przeno¶nych). 
 
-%package %{name}-ldap
+%package ldap
 Summary:	A LDAP plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do LDAP
 Group:		X11/Applications
 Requires:	%{name} = %{version}
 
-%description %{name}-ldap
+%description ldap
 This is a MultiSync plugin which synchronizes LDAP data
 
-%description %{name}-ldap -l pl
+%description ldap -l pl
 Jest to wtyczka MultiSynca do synchronizacji danych LDAP.
 
-%package %{name}-syncml
+%package syncml
 Summary:	A SyncML plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do SynCML
 Group:		X11/Applications
 Requires:	%{name} = %{version}
 
-%description %{name}-syncml
+%description syncml
 This is a SyncML 1.1 plugin for the MultiSync synchronization engine.
 It allows synchronization of SyncML-enabled devices, such as the
 SonyEricsson P800, as well as remote MultiSync to MultiSync
 synchronization over the Internet.
 
-%description %{name}-syncml -l pl
+%description syncml -l pl
 Wtyczka do SyncML 1.1 dla mechanizmu synchronizacji MultiSync.
 Umo¿liwia ona synchronizacjê urz±dzeñ z w³±czonym SyncML, takich jak
 SonyEricsson P800, a tak¿e zdaln± synchronizacjê pomiêdzy MultiSyncami
@@ -132,6 +135,7 @@ poprzez Internet.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure
@@ -173,26 +177,26 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
 
-%files %{name}-evolution
+%files evolution
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/libevolution_sync.so*
 
-%files %{name}-backup
+%files backup
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/libbackup_plugin.so*
 
-%files %{name}-irmc-bluetooth
+%files irmc-bluetooth
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/libirmc_bluetooth.so*
 
-%files %{name}-irmc
+%files irmc
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/libirmc_sync.so*
 
-%files %{name}-ldap
+%files ldap
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/libldap_plugin.so*
 
-%files %{name}-syncml
+%files syncml
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/libsyncml_plugin.so*
