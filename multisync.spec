@@ -168,7 +168,7 @@ for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
     cd plugins/$dir
     %{__libtoolize}
     cp ../../libtool .
-    cp ../../ltmain.sh .
+    cp ../../ltmain.sh .   # due to aux dir this scripts are copied into ../.., where to fix it?
     %{__aclocal}
     %{__autoconf}
     %{__automake}
