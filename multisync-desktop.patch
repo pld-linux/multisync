@@ -1,0 +1,8 @@
+--- multisync-0.82/multisync.desktop.in.orig	2004-04-12 06:22:56.000000000 +0200
++++ multisync-0.82/multisync.desktop.in	2004-07-14 22:10:06.489628384 +0200
+@@ -9,4 +9,4 @@
+ Icon=@prefix@/share/multisync/pixmaps/multisync.png
+ StartupWMClass=multisync
+ X-Desktop-File-Install-Version=0.3
+-Categories=Application;Utility;X-Red-Hat-Base;
++Categories=GTK;GNOME;Utility;X-PIM;
