@@ -16,6 +16,8 @@ Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	e9091a2a1a364f2afb71149928a26c78
 URL:		http://multisync.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.4
 BuildRequires:	bluez-sdp-devel >= 1.2
 BuildRequires:	evolution-devel >= 1.4.3
@@ -132,11 +134,15 @@ poprzez Internet.
 
 %package opie
 Summary:	Opie/Zaurus Synchronization Plugin for MultiSync
+Summary(pl):	Wtyczka MultiSynca do synchronizacji z Opie/Zaurus
 Group:		X11/Applications
 Requires:	%{name} = %{version}
 
 %description opie
 Opie/Zaurus Synchronization Plugin for MultiSync.
+
+%description opie -l pl
+Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 
 %prep
 %setup -q
@@ -190,6 +196,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
+%dir %{_libdir}/%{name}
 %{_datadir}/%{name}
 
 %files evolution
