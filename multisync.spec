@@ -7,7 +7,7 @@
 #
 
 Summary:	PIM data synchronization program
-Summary(pl):	Program do synchronizacji danych 
+Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.80
 Release:	0.1
@@ -74,7 +74,7 @@ This is a plugin to enable synchronization of IrMC
 using MultiSync.
 
 %description %{name}-irmc -l pl
-Wtyczka do IrMC 
+Wtyczka do IrMC
 
 %package %{name}-irmc-bluetooth
 Summary:	A Ximian Evolution plugin for IrMC Bluetooth
@@ -102,7 +102,7 @@ Wtyczka do LDAP
 
 %package %{name}-syncml
 Summary:	A Ximian Evolution plugin for SynCML
-Summary(pl):	Wtyczka do 
+Summary(pl):	Wtyczka do
 Group:		X11/Applications
 
 %description %{name}-syncml
