@@ -19,3 +19,15 @@ diff -urN multisync-0.82.org/plugins/irmc_sync/configure.in multisync-0.82/plugi
  fi
  AC_DEFINE_UNQUOTED(HAVE_BLUETOOTH, ${BLUETOOTH},Defined if Bluetooth is enabled.)
  LIBS="$LIBS -lglib-2.0"
+diff -urN multisync-0.82.org/plugins/irmc_sync/src/Makefile.am multisync-0.82/plugins/irmc_sync/src/Makefile.am
+--- multisync-0.82.org/plugins/irmc_sync/src/Makefile.am	2004-08-07 01:11:44.093960984 +0000
++++ multisync-0.82/plugins/irmc_sync/src/Makefile.am	2004-08-07 01:28:44.959765792 +0000
+@@ -21,7 +21,7 @@
+ libirmc_bluetooth_la_SOURCES = \
+ 	irmc_bluetooth.c irmc_bluetooth.h
+ 
+-libirmc_bluetooth_la_LIBADD = -lbluetooth -lsdp -lpthread
++libirmc_bluetooth_la_LIBADD = -lbluetooth -lpthread
+ 
+ libirmc_sync_la_SOURCES = \
+ 	interface.c interface.h \
