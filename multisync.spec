@@ -17,7 +17,7 @@ Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.83
-Release:	0.20041201.1
+Release:	0.20041201.2
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
@@ -147,6 +147,7 @@ Summary:	A SyncML plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do SynCML
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
+BuildRequires:	wbxml2-devel
 
 %description syncml
 This is a SyncML 1.1 plugin for the MultiSync synchronization engine.
