@@ -43,7 +43,7 @@ Group:		-
 %package %{name}-evolution
 Summary:	A Ximian Evolution plugin for MultiSync
 Summary(pl):	Wtyczka do Evolution
-Group:          X11/Applications
+Group:		X11/Applications
 
 %description %{name}-evolution
 This is a plugin to enable synchronization of Ximian Evolution data
@@ -55,7 +55,7 @@ Wtyczka do Evolution
 %package %{name}-backup
 Summary:	A Ximian Evolution plugin for backup
 Summary(pl):	Wtyczka do kopii zapasowych
-Group:          X11/Applications
+Group:		X11/Applications
 
 %description %{name}-backup
 This is a plugin to enable synchronization of backup
@@ -67,7 +67,7 @@ Wtyczka do kopii zapasowych
 %package %{name}-irmc
 Summary:	A Ximian Evolution plugin for IrMC
 Summary(pl):	Wtyczka do IrMC
-Group:          X11/Applications
+Group:		X11/Applications
 
 %description %{name}-irmc
 This is a plugin to enable synchronization of IrMC
@@ -79,7 +79,7 @@ Wtyczka do IrMC
 %package %{name}-irmc-bluetooth
 Summary:	A Ximian Evolution plugin for IrMC Bluetooth
 Summary(pl):	Wtyczka do IrMC Bluetooth
-Group:          X11/Applications
+Group:		X11/Applications
 
 %description %{name}-irmc-bluetooth
 This is a plugin to enable synchronization of IrMC Bluetooth
@@ -91,7 +91,7 @@ Wtyczka do IrMC Bluetooth
 %package %{name}-ldap
 Summary:	A Ximian Evolution plugin for LDAP
 Summary(pl):	Wtyczka do LDAP
-Group:          X11/Applications
+Group:		X11/Applications
 
 %description %{name}-ldap
 This is a plugin to enable synchronization of LDAP
@@ -103,7 +103,7 @@ Wtyczka do LDAP
 %package %{name}-syncml
 Summary:	A Ximian Evolution plugin for SynCML
 Summary(pl):	Wtyczka do 
-Group:          X11/Applications
+Group:		X11/Applications
 
 %description %{name}-syncml
 This is a SyncML 1.1 plugin for the MultiSync synchronization engine. It
@@ -128,10 +128,10 @@ chmod 755 plugins/evolution_sync/configure
 
 # build plugins
 for dir in plugins/*; do
-    cd $dir
-    %configure
-    %{__make}
-    cd -
+	cd $dir
+	%configure
+	%{__make}
+	cd -
 done
 
 
@@ -143,10 +143,10 @@ rm -rf $RPM_BUILD_ROOT
 
 # build plugins
 for dir in plugins/*; do
-    cd $dir
-    %{__make} install \
-        DESTDIR=$RPM_BUILD_ROOT
-    cd -
+	cd $dir
+	%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+	cd -
 done
 
 %clean
