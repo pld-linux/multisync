@@ -40,6 +40,80 @@ Group:		-
 
 %description subpackage -l pl
 
+%package %{name}-evolution
+Summary:	A Ximian Evolution plugin for MultiSync
+Summary(pl):	Wtyczka do Evolution
+Group:          X11/Applications
+
+%description %{name}-evolution
+This is a plugin to enable synchronization of Ximian Evolution data
+using MultiSync.
+
+%description %{name}-evolution -l pl
+Wtyczka do Evolution
+
+%package %{name}-backup
+Summary:	A Ximian Evolution plugin for backup
+Summary(pl):	Wtyczka do kopii zapasowych
+Group:          X11/Applications
+
+%description %{name}-backup
+This is a plugin to enable synchronization of backup
+using MultiSync.
+
+%description %{name}-backup -l pl
+Wtyczka do kopii zapasowych
+
+%package %{name}-irmc
+Summary:	A Ximian Evolution plugin for IrMC
+Summary(pl):	Wtyczka do IrMC
+Group:          X11/Applications
+
+%description %{name}-irmc
+This is a plugin to enable synchronization of IrMC
+using MultiSync.
+
+%description %{name}-irmc -l pl
+Wtyczka do IrMC 
+
+%package %{name}-irmc-bluetooth
+Summary:	A Ximian Evolution plugin for IrMC Bluetooth
+Summary(pl):	Wtyczka do IrMC Bluetooth
+Group:          X11/Applications
+
+%description %{name}-irmc-bluetooth
+This is a plugin to enable synchronization of IrMC Bluetooth
+using MultiSync.
+
+%description %{name}-irmc-bluetooth -l pl
+Wtyczka do IrMC Bluetooth
+
+%package %{name}-ldap
+Summary:	A Ximian Evolution plugin for LDAP
+Summary(pl):	Wtyczka do LDAP
+Group:          X11/Applications
+
+%description %{name}-ldap
+This is a plugin to enable synchronization of LDAP
+using MultiSync.
+
+%description %{name}-ldap -l pl
+Wtyczka do LDAP
+
+%package %{name}-syncml
+Summary:	A Ximian Evolution plugin for SynCML
+Summary(pl):	Wtyczka do 
+Group:          X11/Applications
+
+%description %{name}-syncml
+This is a SyncML 1.1 plugin for the MultiSync synchronization engine. It
+allows synchronization of SyncML-enabled devices, such as the SonyEricsson
+P800, as well as remote MultiSync to MultiSync synchronization over the
+internet.
+
+%description %{name}-syncml -l pl
+Wtyczka do SyncML
+
 %prep
 %setup -q
 
@@ -88,11 +162,35 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS CREDITS ChangeLog NEWS README THANKS TODO
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
 
 %files subpackage
 %defattr(644,root,root,755)
-%doc extras/*.gz
-%{_datadir}/%{name}-ext
+#%doc extras/*.gz
+#%{_datadir}/%{name}-ext
+
+%files %{name}-evolution
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/libevolution_sync.so*
+
+%files %{name}-backup
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/libbackup_plugin.so*
+
+%files %{name}-irmc-bluetooth
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/libirmc_bluetooth.so*
+
+%files %{name}-irmc
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/libirmc_sync.so*
+
+%files %{name}-ldap
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/libldap_plugin.so*
+
+%files %{name}-syncml
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/libsyncml_plugin.so*
