@@ -18,8 +18,7 @@ Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://multisync.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bluez-libs-devel >= 2.4
-BuildRequires:	bluez-sdp-devel >= 1.2
+BuildRequires:	bluez-libs-devel >= 2.6
 BuildRequires:	evolution-devel >= 1.4.3
 BuildRequires:	libgnomeui-devel >= 2.3
 BuildRequires:	openldap-devel >= 2.1.12
@@ -48,7 +47,7 @@ zapasowych.
 Summary:	A Ximian Evolution plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do Evolution Ximiana
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description evolution
 This is a plugin to enable synchronization of Ximian Evolution data
@@ -62,7 +61,7 @@ pomoc± MultiSync.
 Summary:	A backup plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do kopii zapasowych
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description backup
 This is a MultiSync plugin which backs up your calendar/phonebook/etc.
@@ -76,7 +75,7 @@ adresowej/itp.
 Summary:	An IrMC (SonyEricsson T39/T68i/T610, Siemens S55) plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do IrMC (SonyEricsson T39/T68i/T610, Siemens S55)
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description irmc
 This is a MultiSync plugin for IrMC mobile clients (cell phones
@@ -92,7 +91,7 @@ pod³±czonymi za pomoc± Bluetooth, ³±cza na podczerwieñ (IR) lub kabla.
 Summary:	Bluetooth support for the IrMC plugin for MultiSync
 Summary(pl):	Wsparcie dla Bluetooth dla wtyczki MultiSynca do IrMC
 Group:		X11/Applications
-Requires:	%{name}-irmc = %{version}
+Requires:	%{name}-irmc = %{version}-%{release}
 
 %description irmc-bluetooth
 This package adds Bluetooth support to the IrMC (mobile device) plugin
@@ -106,7 +105,7 @@ Ten pakiet dodaje wsparcie dla Bluetooth do wtyczki MultiSynca do IrMC
 Summary:	A LDAP plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do LDAP
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description ldap
 This is a MultiSync plugin which synchronizes LDAP data
@@ -118,7 +117,7 @@ Jest to wtyczka MultiSynca do synchronizacji danych LDAP.
 Summary:	A SyncML plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do SynCML
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description syncml
 This is a SyncML 1.1 plugin for the MultiSync synchronization engine.
@@ -136,7 +135,7 @@ poprzez Internet.
 Summary:	Opie/Zaurus synchronization plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do synchronizacji z Opie/Zaurus
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description opie
 Opie/Zaurus synchronization plugin for MultiSync.
@@ -183,10 +182,8 @@ export SKIP_PLUGINS
 
 # build plugins
 for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
-	cd plugins/$dir
-	%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-	cd -
+	%{__make} -C plugins/$dir install \
+		DESTDIR=$RPM_BUILD_ROOT
 done
 
 %clean
@@ -201,28 +198,28 @@ rm -rf $RPM_BUILD_ROOT
 
 %files evolution
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/libevolution_sync.so*
+%attr(755,root,root) %{_libdir}/%{name}/libevolution_sync.so*
 
 %files backup
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/libbackup_plugin.so*
+%attr(755,root,root) %{_libdir}/%{name}/libbackup_plugin.so*
 
 %files irmc-bluetooth
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/libirmc_bluetooth.so*
+%attr(755,root,root) %{_libdir}/%{name}/libirmc_bluetooth.so*
 
 %files irmc
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/libirmc_sync.so*
+%attr(755,root,root) %{_libdir}/%{name}/libirmc_sync.so*
 
 %files ldap
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/libldap_plugin.so*
+%attr(755,root,root) %{_libdir}/%{name}/libldap_plugin.so*
 
 %files syncml
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/libsyncml_plugin.so*
+%attr(755,root,root) %{_libdir}/%{name}/libsyncml_plugin.so*
 
 %files opie
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/libopie_sync.so*
+%attr(755,root,root) %{_libdir}/%{name}/libopie_sync.so*
