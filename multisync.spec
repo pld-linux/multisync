@@ -1,6 +1,5 @@
 
-#
-# todo:
+# TODO:
 # - finish the spec with plugins separated into subpackages
 # - irmc plugin tries to link with glib1... make a patch and send it to
 #   authors
@@ -26,93 +25,110 @@ BuildRequires:	openobex-devel >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-PIM data synchronization program.
+MultiSync is a program to synchronize calendars, addressbooks and
+other PIM data between programs on your computer and other computers,
+mobile devices, PDAs or cell phones. Currently it has (in separate
+packages) plugins for Ximian Evolution, IrMC mobile devices, SyncML,
+and for backup.
+%if 0
+and Opie / Zaurus PDAs.
+%endif
 
 %description -l pl
-Program do synchronizacji danych.
-
-%package subpackage
-Summary:	-
-Summary(pl):	-
-Group:		-
-
-%description subpackage
-
-%description subpackage -l pl
+Program do synchronizacji kalendarzy, ksi±¿ek adresowych i innych
+danych odobistych pomiêdzy ró¿nymi programami w ramach jednego
+komputera, jak te¿ pomiêdzy ró¿nymi komputerami i urz±dzeniami
+przeno¶nymi. Aktualnie posiada wtyczki (w osobnych pakietach) do:
+Evolution Ximiana, przeno¶nych urz±dzeñ IrMC, SyncML i kopii
+zapasowych.
 
 %package %{name}-evolution
 Summary:	A Ximian Evolution plugin for MultiSync
-Summary(pl):	Wtyczka do Evolution
+Summary(pl):	Wtyczka MultiSynca do Evolution Ximiana
 Group:		X11/Applications
+Requires:	%{name} = %{version}
 
 %description %{name}-evolution
 This is a plugin to enable synchronization of Ximian Evolution data
 using MultiSync.
 
 %description %{name}-evolution -l pl
-Wtyczka do Evolution
+Jest to wtyczka umo¿liwiaj±ca synchronizacjê Evolution Ximiana za
+pomoc± MultiSync.
 
 %package %{name}-backup
-Summary:	A Ximian Evolution plugin for backup
-Summary(pl):	Wtyczka do kopii zapasowych
+Summary:	A backup plugin for MultiSync
+Summary(pl):	Wtyczka MultiSynca do kopii zapasowych
 Group:		X11/Applications
+Requires:	%{name} = %{version}
 
 %description %{name}-backup
-This is a plugin to enable synchronization of backup
-using MultiSync.
+This is a MultiSync plugin which backs up your calendar/phonebook/etc.
+data.
 
 %description %{name}-backup -l pl
-Wtyczka do kopii zapasowych
+Jest to wtyczka MultiSynca tworz±ca kopie zapasowe kalendarza/ksi±¿ki
+adresowej/itp.
 
 %package %{name}-irmc
-Summary:	A Ximian Evolution plugin for IrMC
-Summary(pl):	Wtyczka do IrMC
+Summary:	An IrMC (SonyEricsson T39/T68i/T610, Siemens S55) plugin for MultiSync
+Summary(pl):	Wtyczka MultiSynca do IrMC (SonyEricsson T39/T68i/T610, Siemens S55)
 Group:		X11/Applications
+Requires:	%{name} = %{version}
 
 %description %{name}-irmc
-This is a plugin to enable synchronization of IrMC
-using MultiSync.
+This is a MultiSync plugin for IrMC mobile clients (cell phones
+such as SonyEricsson T39/T68/T610 and Siemens S55) connected via
+Bluetooth, IR or cable.
 
 %description %{name}-irmc -l pl
-Wtyczka do IrMC
+Jest to wtyczka MultiSynca do wspó³pracy z przeno¶nymi klientami IrMC
+(telefony komórkowe takie jak SonyEricsson T39/T68/T610 i Siemens S55)
+pod³±czonymi za pomoc± Bluetooth, ³±cza na podczerwieñ (IR) lub kabla.
 
 %package %{name}-irmc-bluetooth
-Summary:	A Ximian Evolution plugin for IrMC Bluetooth
-Summary(pl):	Wtyczka do IrMC Bluetooth
+Summary:	Bluetooth support for the IrMC plugin for MultiSync
+Summary(pl):	Wsparcie dla Bluetooth dla wtyczki MultiSynca do IrMC
 Group:		X11/Applications
+Requires:	%{name}-irmc = %{version}
 
 %description %{name}-irmc-bluetooth
-This is a plugin to enable synchronization of IrMC Bluetooth
-using MultiSync.
+This package adds Bluetooth support to the IrMC (mobile device) plugin
+for MultiSync.
 
 %description %{name}-irmc-bluetooth -l pl
-Wtyczka do IrMC Bluetooth
+Ten pakiet dodaje wsparcie dla Bluetooth do wtyczki MultiSynca do IrMC
+(dla urz±dzeñ przeno¶nych). 
 
 %package %{name}-ldap
-Summary:	A Ximian Evolution plugin for LDAP
-Summary(pl):	Wtyczka do LDAP
+Summary:	A LDAP plugin for MultiSync
+Summary(pl):	Wtyczka MultiSynca do LDAP
 Group:		X11/Applications
+Requires:	%{name} = %{version}
 
 %description %{name}-ldap
-This is a plugin to enable synchronization of LDAP
-using MultiSync.
+This is a MultiSync plugin which synchronizes LDAP data
 
 %description %{name}-ldap -l pl
-Wtyczka do LDAP
+Jest to wtyczka MultiSynca do synchronizacji danych LDAP.
 
 %package %{name}-syncml
-Summary:	A Ximian Evolution plugin for SynCML
-Summary(pl):	Wtyczka do
+Summary:	A SyncML plugin for MultiSync
+Summary(pl):	Wtyczka MultiSynca do SynCML
 Group:		X11/Applications
+Requires:	%{name} = %{version}
 
 %description %{name}-syncml
-This is a SyncML 1.1 plugin for the MultiSync synchronization engine. It
-allows synchronization of SyncML-enabled devices, such as the SonyEricsson
-P800, as well as remote MultiSync to MultiSync synchronization over the
-internet.
+This is a SyncML 1.1 plugin for the MultiSync synchronization engine.
+It allows synchronization of SyncML-enabled devices, such as the
+SonyEricsson P800, as well as remote MultiSync to MultiSync
+synchronization over the Internet.
 
 %description %{name}-syncml -l pl
-Wtyczka do SyncML
+Wtyczka do SyncML 1.1 dla mechanizmu synchronizacji MultiSync.
+Umo¿liwia ona synchronizacjê urz±dzeñ z w³±czonym SyncML, takich jak
+SonyEricsson P800, a tak¿e zdaln± synchronizacjê pomiêdzy MultiSyncami
+poprzez Internet.
 
 %prep
 %setup -q
@@ -134,7 +150,6 @@ for dir in plugins/*; do
 	cd -
 done
 
-
 %install
 rm -rf $RPM_BUILD_ROOT
 
@@ -152,24 +167,11 @@ done
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre
-
-%post
-
-%preun
-
-%postun
-
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
-
-%files subpackage
-%defattr(644,root,root,755)
-#%doc extras/*.gz
-#%{_datadir}/%{name}-ext
 
 %files %{name}-evolution
 %defattr(644,root,root,755)
