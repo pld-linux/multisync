@@ -133,13 +133,13 @@ SonyEricsson P800, a tak¿e zdaln± synchronizacjê pomiêdzy MultiSyncami
 poprzez Internet.
 
 %package opie
-Summary:	Opie/Zaurus Synchronization Plugin for MultiSync
+Summary:	Opie/Zaurus synchronization plugin for MultiSync
 Summary(pl):	Wtyczka MultiSynca do synchronizacji z Opie/Zaurus
 Group:		X11/Applications
 Requires:	%{name} = %{version}
 
 %description opie
-Opie/Zaurus Synchronization Plugin for MultiSync.
+Opie/Zaurus synchronization plugin for MultiSync.
 
 %description opie -l pl
 Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
