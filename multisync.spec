@@ -3,8 +3,7 @@
 # TODO:
 # - irmc plugin tries to link with glib1... make a patch and send it to
 #   authors <- fixed with simple hack, do not send the patch. fixing this
-#   problem requires more work :-\
-# - kill evolution-static BR, look into evolution.spec todo
+#   problem requires more work :-\ <- it is fixed in their cvs
 # - devel subpackage
 #
 
@@ -12,7 +11,7 @@ Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.80
-Release:	0.3
+Release:	0.4
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
@@ -22,7 +21,6 @@ URL:		http://multisync.sourceforge.net/
 BuildRequires:	bluez-libs-devel >= 2.4
 BuildRequires:	bluez-sdp-devel >= 1.2
 BuildRequires:	evolution-devel >= 1.4.3
-BuildRequires:	evolution-static >= 1.4.3
 BuildRequires:	libgnomeui-devel >= 2.3
 BuildRequires:	openldap-devel >= 2.1.12
 BuildRequires:	openobex-devel >= 1.0.0
