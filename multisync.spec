@@ -28,6 +28,7 @@ BuildRequires:	bluez-libs-devel >= 2.6
 BuildRequires:	libgnomeui-devel >= 2.3
 BuildRequires:	openldap-devel >= 2.1.12
 BuildRequires:	openobex-devel >= 1.0.0
+BuildRequires:	curl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
