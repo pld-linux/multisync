@@ -33,6 +33,7 @@ BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.7
 BuildRequires:	curl-devel
 %{?with_evolution:BuildRequires:	evolution-devel >= 2.0.0}
+%{?with_evolution:BuildRequires:	evolution-data-server-devel}
 BuildRequires:	gettext-devel
 BuildRequires:	libgnomeui-devel >= 2.3
 BuildRequires:	libtool
