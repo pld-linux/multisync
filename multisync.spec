@@ -5,12 +5,15 @@
 # - -avoid-version patch for plugins and send it to authors
 # - review pl translations
 #
+# Conditional build:
+# _with_evolution - evolution support
+%bcond_with  evolution 			# build with evolution support
 
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.82
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
@@ -21,7 +24,7 @@ URL:		http://multisync.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.6
-BuildRequires:	evolution-devel >= 1.4.3
+%{?with_evolution:BuildRequires:	evolution-devel >= 1.4.3}
 BuildRequires:	libgnomeui-devel >= 2.3
 BuildRequires:	openldap-devel >= 2.1.12
 BuildRequires:	openobex-devel >= 1.0.0
@@ -160,7 +163,12 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 
 # libnvpair library
 # pi_socket library
+%if %{with evolution}
 SKIP_PLUGINS="-e csa_plugin -e palm_sync"
+%else
+SKIP_PLUGINS="-e csa_plugin -e palm_sync -e evolution_sync"
+%endif
+
 export SKIP_PLUGINS
 
 # build plugins
@@ -184,7 +192,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%if %{with evolution}
 SKIP_PLUGINS="-e csa_plugin -e palm_sync"
+%else
+SKIP_PLUGINS="-e csa_plugin -e palm_sync -e evolution_sync"
+%endif
 export SKIP_PLUGINS
 
 # build plugins
@@ -203,9 +215,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}
 %{_datadir}/%{name}
 
+%if %{with evolution}
 %files evolution
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/%{name}/libevolution_sync.so*
+%endif
 
 %files backup
 %defattr(644,root,root,755)
