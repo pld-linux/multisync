@@ -1,10 +1,11 @@
 
+#
 # TODO:
-# - finish the spec with plugins separated into subpackages
 # - irmc plugin tries to link with glib1... make a patch and send it to
 #   authors <- fixed with simple hack, do not send the patch. fixing this
 #   problem requires more work :-\
 # - kill evolution-static BR, look into evolution.spec todo
+# - devel subpackage
 #
 
 Summary:	PIM data synchronization program
