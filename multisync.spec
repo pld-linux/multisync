@@ -19,6 +19,7 @@ URL:		http://multisync.sourceforge.net/
 BuildRequires:	bluez-libs-devel >= 2.4
 BuildRequires:	bluez-sdp-devel >= 1.2
 BuildRequires:	evolution-devel >= 1.4.3
+BuildRequires:	evolution-static >= 1.4.3
 BuildRequires:	libgnomeui-devel >= 2.3
 BuildRequires:	openldap-devel >= 2.1.12
 BuildRequires:	openobex-devel >= 1.0.0
