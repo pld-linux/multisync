@@ -10,7 +10,7 @@ Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.81
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
