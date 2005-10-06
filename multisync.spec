@@ -17,7 +17,7 @@ Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.83
-Release:	0.20041201.2
+Release:	0.20041201.3
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://dl.sourceforge.net/multisync/%{name}-%{version}.tar.bz2
@@ -27,9 +27,11 @@ Patch0:		%{name}-install.patch
 Patch1:		%{name}-top.patch
 Patch2:		%{name}-desktop.patch
 Patch3:		%{name}-newbluez.patch
+Patch4:		%{name}-evolution.patch
 URL:		http://multisync.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	bison
 BuildRequires:	bluez-libs-devel >= 2.7
 BuildRequires:	curl-devel
 %{?with_evolution:BuildRequires:	evolution-devel >= 2.0.0}
@@ -41,6 +43,7 @@ BuildRequires:	openldap-devel >= 2.1.12
 BuildRequires:	openobex-devel >= 1.0.0
 BuildRequires:	sed >= 4.0
 BuildRequires:	wbxml2-devel
+BuildRequires:	yacc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -179,6 +182,7 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 %patch1 -p1
 #%patch2 -p1
 #%patch3 -p1
+%patch4 -p1
 
 %{__perl} -pi -e 's@/lib/multisync@/%{_lib}/multisync@' \
 	src/Makefile.am plugins/*/src/Makefile.am
