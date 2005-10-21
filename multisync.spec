@@ -43,7 +43,6 @@ BuildRequires:	openldap-devel >= 2.1.12
 BuildRequires:	openobex-devel >= 1.0.0
 BuildRequires:	sed >= 4.0
 BuildRequires:	wbxml2-devel
-BuildRequires:	yacc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
