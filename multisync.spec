@@ -17,7 +17,7 @@ Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.83
-Release:	0.20041201.3
+Release:	0.20041201.4
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://dl.sourceforge.net/multisync/%{name}-%{version}.tar.bz2
@@ -39,7 +39,7 @@ BuildRequires:	curl-devel
 BuildRequires:	gettext-devel
 BuildRequires:	libgnomeui-devel >= 2.3
 BuildRequires:	libtool
-BuildRequires:	openldap-devel >= 2.1.12
+BuildRequires:	openldap-devel >= 2.3.0
 BuildRequires:	openobex-devel >= 1.0.0
 BuildRequires:	sed >= 4.0
 BuildRequires:	wbxml2-devel
