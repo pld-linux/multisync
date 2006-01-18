@@ -1,0 +1,21 @@
+--- multisync-0.83/plugins/ldap_plugin/src/Makefile.am~	2006-01-18 19:11:46.000000000 +0100
++++ multisync-0.83/plugins/ldap_plugin/src/Makefile.am	2006-01-18 19:44:48.000000000 +0100
+@@ -5,7 +5,7 @@
+ INCLUDES = \
+ 	-DPACKAGE_DATA_DIR=\""$(datadir)/multisync"\" \
+ 	-I../../../src/libversit -I$(top_srcdir) @PACKAGE_CFLAGS@ -I$(top_srcdir)/include  \
+-	-I../../../include -Werror
++	-I../../../include
+ 
+ lib_LTLIBRARIES = libldap_plugin.la
+ 
+--- multisync-0.83/plugins/ldap_plugin/src/ldap_plugin.h~	2003-12-01 22:51:10.000000000 +0100
++++ multisync-0.83/plugins/ldap_plugin/src/ldap_plugin.h	2006-01-18 19:46:13.000000000 +0100
+@@ -3,6 +3,7 @@
+ 
+ #include <string.h>
+ #include <multisync.h>
++#define LDAP_DEPRECATED 1
+ #include <ldap.h>
+ #include <libxml/xmlmemory.h>
+ #include <libxml/parser.h>
