@@ -28,6 +28,7 @@ Patch1:		%{name}-top.patch
 Patch2:		%{name}-desktop.patch
 Patch3:		%{name}-newbluez.patch
 Patch4:		%{name}-evolution.patch
+Patch5:		%{name}-ldap_plugin.patch
 URL:		http://multisync.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -182,6 +183,7 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 #%patch2 -p1
 #%patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %{__perl} -pi -e 's@/lib/multisync@/%{_lib}/multisync@' \
 	src/Makefile.am plugins/*/src/Makefile.am
