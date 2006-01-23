@@ -4,7 +4,7 @@ Version:	0.90.18
 Release:	0.1
 License:	GPL
 Group:		Applications
-Source0:	http://dl.sourceforge.net/multisync/%{name}-%{version}.tar.gz?format=raw
+Source0:	http://www.opensync.org/attachment/wiki/download/%{name}-%{version}.tar.gz?format=raw
 # Source0-md5:	d55d8eaeecb825b87a25eeceaef92cb9
 URL:		http://opensync.org/
 BuildRequires:	libopensync-devel
