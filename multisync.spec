@@ -1,4 +1,5 @@
 Summary:	OpenSync data synchronization commandline programs
+Summary(pl):	Programy do synchronizacji danych OpenSync
 Name:		multisync
 Version:	0.90.18
 Release:	0.1
@@ -18,6 +19,16 @@ It consists of several plugins that can be used to connect to devices,
 a powerful sync-engine and the framework itself.
 
 This package contains commandline programs to use OpenSync framework.
+
+%description -l pl
+OpenSync to niezale¿ny od platformy i dystrybucji szkielet do
+synchronizacji danych.
+
+Sk³ada siê z ró¿nych wtyczek, których mo¿na u¿ywaæ do ³±czenia z
+urz±dzeniami, potê¿nego silnika synchronizacji oraz samego szkieletu.
+
+Ten pakiet zawiera dzia³aj±ce z linii poleceñ programy do korzystania
+ze szkieletu OpenSync.
 
 %prep
 %setup -q
