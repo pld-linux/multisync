@@ -1,5 +1,3 @@
-
-#
 # TODO:
 # - update desktop patch
 # - kdepim plugin
@@ -13,11 +11,12 @@
 
 %define skip_plugins "%{!?with_evolution:-e evolution2_sync} -e CVS -e remote_sync -e empty_plugin -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
 
+%define	_rel	9
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
 Version:	0.83
-Release:	0.20041201.8
+Release:	0.20041201.%{_rel}
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://dl.sourceforge.net/multisync/%{name}-%{version}.tar.bz2
@@ -197,7 +196,6 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 %configure
 %{__make}
 
-
 # build plugins
 SKIP_PLUGINS=%{skip_plugins}
 for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
@@ -207,7 +205,7 @@ for dir in $(ls plugins/ | grep -v $SKIP_PLUGINS); do
 	%{__autoheader}
 	# don't use -f here
 	automake -a -c --foreign
-	sed -i 's#/bin/sh#/bin/bash#' configure # ugly hack to workaround bashism :-\
+	%{__sed} -i 's#/bin/sh#/bin/bash#' configure # ugly hack to workaround bashism :-\!
 	%configure \
 		--disable-static
 	%{__make}
