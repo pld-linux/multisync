@@ -11,7 +11,7 @@
 
 %define skip_plugins "%{!?with_evolution:-e evolution2_sync} -e CVS -e remote_sync -e empty_plugin -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
 
-%define	_rel	9
+%define	_rel	10
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
