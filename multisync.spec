@@ -14,7 +14,7 @@
 %define skip_plugins "%{!?with_evolution:-e evolution2_sync} -e CVS -e remote_sync -e empty_plugin -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
 
 Summary:	PIM data synchronization program
-Summary(pl):	Program do synchronizacji danych
+Summary(pl.UTF-8):   Program do synchronizacji danych
 Name:		multisync
 Version:	0.83
 Release:	0.20041201.6
@@ -56,29 +56,29 @@ and for backup.
 and Opie / Zaurus PDAs.
 %endif
 
-%description -l pl
-Program do synchronizacji kalendarzy, ksi±¿ek adresowych i innych
-danych osobistych pomiêdzy ró¿nymi programami w ramach jednego
-komputera, jak te¿ pomiêdzy ró¿nymi komputerami i urz±dzeniami
-przeno¶nymi. Aktualnie posiada wtyczki (w osobnych pakietach) do:
-Evolution Ximiana, przeno¶nych urz±dzeñ IrMC, SyncML i kopii
+%description -l pl.UTF-8
+Program do synchronizacji kalendarzy, ksiÄ…Å¼ek adresowych i innych
+danych osobistych pomiÄ™dzy rÃ³Å¼nymi programami w ramach jednego
+komputera, jak teÅ¼ pomiÄ™dzy rÃ³Å¼nymi komputerami i urzÄ…dzeniami
+przenoÅ›nymi. Aktualnie posiada wtyczki (w osobnych pakietach) do:
+Evolution Ximiana, przenoÅ›nych urzÄ…dzeÅ„ IrMC, SyncML i kopii
 zapasowych.
 
 %package devel
 Summary:	Header file to create multisync plugins
-Summary(pl):	Plik nag³ówkowy do tworzenia wtyczek multisynca
+Summary(pl.UTF-8):   Plik nagÅ‚Ã³wkowy do tworzenia wtyczek multisynca
 Group:		Development/Libraries
 # doesn't require base
 
 %description devel
 Header file to create multisync plugins.
 
-%description devel -l pl
-Plik nag³ówkowy do tworzenia wtyczek multisynca.
+%description devel -l pl.UTF-8
+Plik nagÅ‚Ã³wkowy do tworzenia wtyczek multisynca.
 
 %package evolution
 Summary:	A Ximian Evolution plugin for MultiSync
-Summary(pl):	Wtyczka MultiSynca do Evolution Ximiana
+Summary(pl.UTF-8):   Wtyczka MultiSynca do Evolution Ximiana
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
@@ -86,13 +86,13 @@ Requires:	%{name} = %{version}-%{release}
 This is a plugin to enable synchronization of Ximian Evolution data
 using MultiSync.
 
-%description evolution -l pl
-Jest to wtyczka umo¿liwiaj±ca synchronizacjê Evolution Ximiana za
-pomoc± MultiSync.
+%description evolution -l pl.UTF-8
+Jest to wtyczka umoÅ¼liwiajÄ…ca synchronizacjÄ™ Evolution Ximiana za
+pomocÄ… MultiSync.
 
 %package backup
 Summary:	A backup plugin for MultiSync
-Summary(pl):	Wtyczka MultiSynca do kopii zapasowych
+Summary(pl.UTF-8):   Wtyczka MultiSynca do kopii zapasowych
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
@@ -100,13 +100,13 @@ Requires:	%{name} = %{version}-%{release}
 This is a MultiSync plugin which backs up your calendar/phonebook/etc.
 data.
 
-%description backup -l pl
-Jest to wtyczka MultiSynca tworz±ca kopie zapasowe kalendarza/ksi±¿ki
+%description backup -l pl.UTF-8
+Jest to wtyczka MultiSynca tworzÄ…ca kopie zapasowe kalendarza/ksiÄ…Å¼ki
 adresowej/itp.
 
 %package irmc
 Summary:	An IrMC (SonyEricsson T39/T68i/T610, Siemens S55) plugin for MultiSync
-Summary(pl):	Wtyczka MultiSynca do IrMC (SonyEricsson T39/T68i/T610, Siemens S55)
+Summary(pl.UTF-8):   Wtyczka MultiSynca do IrMC (SonyEricsson T39/T68i/T610, Siemens S55)
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
@@ -115,14 +115,14 @@ This is a MultiSync plugin for IrMC mobile clients (cell phones
 such as SonyEricsson T39/T68/T610 and Siemens S55) connected via
 Bluetooth, IR or cable.
 
-%description irmc -l pl
-Jest to wtyczka MultiSynca do wspó³pracy z przeno¶nymi klientami IrMC
-(telefony komórkowe takie jak SonyEricsson T39/T68/T610 i Siemens S55)
-pod³±czonymi za pomoc± Bluetooth, ³±cza na podczerwieñ (IR) lub kabla.
+%description irmc -l pl.UTF-8
+Jest to wtyczka MultiSynca do wspÃ³Å‚pracy z przenoÅ›nymi klientami IrMC
+(telefony komÃ³rkowe takie jak SonyEricsson T39/T68/T610 i Siemens S55)
+podÅ‚Ä…czonymi za pomocÄ… Bluetooth, Å‚Ä…cza na podczerwieÅ„ (IR) lub kabla.
 
 %package irmc-bluetooth
 Summary:	Bluetooth support for the IrMC plugin for MultiSync
-Summary(pl):	Wsparcie dla Bluetooth dla wtyczki MultiSynca do IrMC
+Summary(pl.UTF-8):   Wsparcie dla Bluetooth dla wtyczki MultiSynca do IrMC
 Group:		X11/Applications
 Requires:	%{name}-irmc = %{version}-%{release}
 
@@ -130,25 +130,25 @@ Requires:	%{name}-irmc = %{version}-%{release}
 This package adds Bluetooth support to the IrMC (mobile device) plugin
 for MultiSync.
 
-%description irmc-bluetooth -l pl
+%description irmc-bluetooth -l pl.UTF-8
 Ten pakiet dodaje wsparcie dla Bluetooth do wtyczki MultiSynca do IrMC
-(dla urz±dzeñ przeno¶nych). 
+(dla urzÄ…dzeÅ„ przenoÅ›nych). 
 
 %package ldap
 Summary:	A LDAP plugin for MultiSync
-Summary(pl):	Wtyczka MultiSynca do LDAP
+Summary(pl.UTF-8):   Wtyczka MultiSynca do LDAP
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
 %description ldap
 This is a MultiSync plugin which synchronizes LDAP data
 
-%description ldap -l pl
+%description ldap -l pl.UTF-8
 Jest to wtyczka MultiSynca do synchronizacji danych LDAP.
 
 %package syncml
 Summary:	A SyncML plugin for MultiSync
-Summary(pl):	Wtyczka MultiSynca do SynCML
+Summary(pl.UTF-8):   Wtyczka MultiSynca do SynCML
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
@@ -158,22 +158,22 @@ It allows synchronization of SyncML-enabled devices, such as the
 SonyEricsson P800, as well as remote MultiSync to MultiSync
 synchronization over the Internet.
 
-%description syncml -l pl
+%description syncml -l pl.UTF-8
 Wtyczka do SyncML 1.1 dla mechanizmu synchronizacji MultiSync.
-Umo¿liwia ona synchronizacjê urz±dzeñ z w³±czonym SyncML, takich jak
-SonyEricsson P800, a tak¿e zdaln± synchronizacjê pomiêdzy MultiSyncami
+UmoÅ¼liwia ona synchronizacjÄ™ urzÄ…dzeÅ„ z wÅ‚Ä…czonym SyncML, takich jak
+SonyEricsson P800, a takÅ¼e zdalnÄ… synchronizacjÄ™ pomiÄ™dzy MultiSyncami
 poprzez Internet.
 
 %package opie
 Summary:	Opie/Zaurus synchronization plugin for MultiSync
-Summary(pl):	Wtyczka MultiSynca do synchronizacji z Opie/Zaurus
+Summary(pl.UTF-8):   Wtyczka MultiSynca do synchronizacji z Opie/Zaurus
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
 %description opie
 Opie/Zaurus synchronization plugin for MultiSync.
 
-%description opie -l pl
+%description opie -l pl.UTF-8
 Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 
 %prep
