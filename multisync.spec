@@ -1,5 +1,5 @@
 Summary:	OpenSync data synchronization commandline programs
-Summary(pl.UTF-8):   Programy do synchronizacji danych OpenSync
+Summary(pl.UTF-8):	Programy do synchronizacji danych OpenSync
 Name:		multisync
 Version:	0.90.18
 Release:	0.1
