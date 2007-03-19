@@ -11,7 +11,7 @@
 
 %define skip_plugins "%{!?with_evolution:-e evolution2_sync} -e CVS -e remote_sync -e empty_plugin -e csa_plugin -e palm_sync -e evo_address_sync -e evolution_sync -e gnokii -e kdepim"
 
-%define	_rel	11
+%define	_rel	12
 Summary:	PIM data synchronization program
 Summary(pl):	Program do synchronizacji danych
 Name:		multisync
@@ -188,6 +188,7 @@ Wtyczka MultiSynca do synchronizacji z Opie/Zaurus.
 	src/Makefile.am plugins/*/src/Makefile.am
 
 %build
+cp -f /usr/share/gettext/config.rpath .
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
